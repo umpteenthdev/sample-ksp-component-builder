@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.network'
+    namespace 'com.example.core'
     compileSdk 33
 
     defaultConfig {
@@ -27,6 +27,4 @@ android {
 }
 
 dependencies {
-    implementation "com.squareup.okhttp3:okhttp:4.10.0"
-    implementation project(":core")
 }
