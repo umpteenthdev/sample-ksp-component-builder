@@ -16,3 +16,4 @@ rootProject.name = "KspComponentBuilder"
 include ':app'
 include ':network'
 include ':core'
+include ':contacts'
