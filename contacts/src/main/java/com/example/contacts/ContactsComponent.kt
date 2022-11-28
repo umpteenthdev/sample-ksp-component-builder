@@ -7,7 +7,8 @@ import dagger.Component
 @GenerateComponentFactory
 @Component(
     modules = [
-        ModuleWithRequiredParameterModule::class,
+        RequiredParameterModule::class,
+        AllDefaultParametersModule::class,
         InterfaceModule::class,
     ],
     dependencies = [

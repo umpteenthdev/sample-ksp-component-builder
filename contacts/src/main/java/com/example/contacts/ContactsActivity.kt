@@ -16,8 +16,9 @@ internal class ContactsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         DaggerContactsComponent.builder()
-            .moduleWithRequiredParameterModule(ModuleWithRequiredParameterModule(this))
-            .unknownDependencies(object: UnknownDependencies {})
+            .requiredParameterModule(RequiredParameterModule(this))
+            .allDefaultParametersModule(AllDefaultParametersModule()) // we can omit it
+            .unknownDependencies(object : UnknownDependencies {})
             .networkDependencies(DependenciesProvider.instance.provide()) // we can omit it
             .internalProvidableDependencies(DependenciesProvider.instance.provide()) // we can omit it
             .build()
@@ -26,7 +27,7 @@ internal class ContactsActivity : AppCompatActivity() {
         // VS
 
         ContactsComponentFactory.createComponent(
-            moduleWithRequiredParameterModule = ModuleWithRequiredParameterModule(this),
+            requiredParameterModule = RequiredParameterModule(this),
             unknownDependencies = object : UnknownDependencies {},
         ).inject(this)
     }
