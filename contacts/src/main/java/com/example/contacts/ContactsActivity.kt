@@ -14,10 +14,20 @@ internal class ContactsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         DaggerContactsComponent.builder()
-            .contactsModule(ContactsModule(this))
-            .networkDependencies(DependenciesProvider.instance.provide())
+            .moduleWithRequiredParameterModule(ModuleWithRequiredParameterModule(this))
+            .unknownDependencies(object: UnknownDependencies {})
+            .networkDependencies(DependenciesProvider.instance.provide()) // we can omit it
+            .internalProvidableDependencies(DependenciesProvider.instance.provide()) // we can omit it
             .build()
             .inject(this)
+
+        // VS
+
+        ContactsComponentFactory.createComponent(
+            moduleWithRequiredParameterModule = ModuleWithRequiredParameterModule(this),
+            unknownDependencies = object : UnknownDependencies {},
+        ).inject(this)
     }
 }

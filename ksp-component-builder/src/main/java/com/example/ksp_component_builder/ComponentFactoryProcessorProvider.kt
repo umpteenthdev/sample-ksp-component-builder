@@ -7,6 +7,11 @@ import com.google.devtools.ksp.processing.SymbolProcessorProvider
 internal class ComponentFactoryProcessorProvider : SymbolProcessorProvider {
 
     override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
-        return ComponentFactoryProcessor(environment)
+        return ComponentFactoryProcessor(
+            logger = environment.logger,
+            fileGenerator = ComponentFactoryFileGenerator(
+                codeGenerator = environment.codeGenerator,
+            )
+        )
     }
 }
