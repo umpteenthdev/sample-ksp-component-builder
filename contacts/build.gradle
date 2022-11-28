@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
 }
 
 android {
@@ -25,6 +26,15 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
+
+    sourceSets {
+        debug {
+            java.srcDirs += "build/generated/ksp/debug/kotlin"
+        }
+        release {
+            java.srcDirs += "build/generated/ksp/release/kotlin"
+        }
+    }
 }
 
 dependencies {
@@ -38,4 +48,6 @@ dependencies {
 
     implementation project(":core")
     implementation project(":network")
+
+    ksp project(":ksp-component-builder")
 }
