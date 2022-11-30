@@ -31,7 +31,7 @@ internal class ComponentFactoryProcessor(
         log("Valid symbols count: ${validSymbols.size}")
         log("Invalid symbols count: ${symbolsForReprocessing.size}")
 
-        val markedClassDeclarations = validSymbols.mapNotNull { it as? KSClassDeclaration }
+        val markedClassDeclarations = validSymbols.filterIsInstance<KSClassDeclaration>()
         log("Classes with annotation: $markedClassDeclarations")
         val componentsData = getComponentsData(markedClassDeclarations)
 
