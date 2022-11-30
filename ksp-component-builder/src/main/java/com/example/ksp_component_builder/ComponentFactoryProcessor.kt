@@ -43,8 +43,8 @@ internal class ComponentFactoryProcessor(
         return symbolsForReprocessing
     }
 
-    private fun getDaggerComponentAnnotation(target: KSAnnotated): KSAnnotation? {
-        return target.annotations
+    private fun getDaggerComponentAnnotation(componentDeclaration: KSAnnotated): KSAnnotation? {
+        return componentDeclaration.annotations
             .filter { annotation -> annotation.shortName.asString() == "Component" }
             .find { annotation ->
                 annotation.annotationType
