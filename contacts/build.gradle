@@ -37,6 +37,11 @@ android {
     }
 }
 
+ksp {
+    arg("test_parameter_1", "false")
+    arg("test_parameter_2", "100")
+}
+
 dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
